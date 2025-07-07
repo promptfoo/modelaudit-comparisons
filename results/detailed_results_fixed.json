@@ -1,0 +1,358 @@
+{
+  "pickle_os_system.pkl": {
+    "modelaudit": {
+      "issues_count": 2,
+      "issues": [
+        {
+          "message": "Found REDUCE opcode - potential __reduce__ method execution",
+          "severity": "warning",
+          "location": "test_models/pickle_os_system.pkl (pos 62)",
+          "details": {
+            "position": 62,
+            "opcode": "REDUCE",
+            "ml_context_confidence": 0.0
+          },
+          "timestamp": 1750916219.0063958,
+          "why": "The REDUCE opcode calls a callable with arguments, effectively executing arbitrary Python functions. This is the primary mechanism for pickle-based code execution attacks through __reduce__ methods."
+        },
+        {
+          "message": "Suspicious module reference found: posix.system",
+          "severity": "critical",
+          "location": "test_models/pickle_os_system.pkl (pos 28)",
+          "details": {
+            "module": "posix",
+            "function": "system",
+            "position": 28,
+            "opcode": "STACK_GLOBAL",
+            "ml_context_confidence": 0.0
+          },
+          "timestamp": 1750916219.006434,
+          "why": "The 'posix' module provides direct access to POSIX system calls on Unix-like systems. Like the 'os' module, it can execute arbitrary system commands and manipulate the file system. The 'posix.system' function is equivalent to 'os.system' and poses the same security risks."
+        }
+      ]
+    },
+    "modelscan": {
+      "issues_count": 1,
+      "issues": [
+        {
+          "description": "Use of unsafe operator 'system' from module  'posix'",
+          "operator": "system",
+          "module": "posix",
+          "source": "pickle_os_system.pkl",
+          "scanner": "modelscan.scanners.PickleUnsafeOpScan",
+          "severity": "CRITICAL"
+        }
+      ]
+    }
+  },
+  "pickle_base64_payload.pkl": {
+    "modelaudit": {
+      "issues_count": 2,
+      "issues": [
+        {
+          "message": "Found REDUCE opcode - potential __reduce__ method execution",
+          "severity": "warning",
+          "location": "test_models/pickle_base64_payload.pkl (pos 72)",
+          "details": {
+            "position": 72,
+            "opcode": "REDUCE",
+            "ml_context_confidence": 0.0
+          },
+          "timestamp": 1750916221.908244,
+          "why": "The REDUCE opcode calls a callable with arguments, effectively executing arbitrary Python functions. This is the primary mechanism for pickle-based code execution attacks through __reduce__ methods."
+        },
+        {
+          "message": "Suspicious module reference found: builtins.exec",
+          "severity": "critical",
+          "location": "test_models/pickle_base64_payload.pkl (pos 29)",
+          "details": {
+            "module": "builtins",
+            "function": "exec",
+            "position": 29,
+            "opcode": "STACK_GLOBAL",
+            "ml_context_confidence": 0.0
+          },
+          "timestamp": 1750916221.908285,
+          "why": "Direct access to builtin functions can be used to bypass restrictions or access dangerous functionality like eval/exec."
+        }
+      ]
+    },
+    "modelscan": {
+      "issues_count": 1,
+      "issues": [
+        {
+          "description": "Use of unsafe  operator 'exec' from module 'builtins'",
+          "operator": "exec",
+          "module": "builtins",
+          "source": "pickle_base64_payload.pkl",
+          "scanner": "modelscan.scanners.PickleUnsafeOpScan",
+          "severity": "CRITICAL"
+        }
+      ]
+    }
+  },
+  "pickle_obfuscated.pkl": {
+    "modelaudit": {
+      "issues_count": 2,
+      "issues": [
+        {
+          "message": "Found REDUCE opcode - potential __reduce__ method execution",
+          "severity": "warning",
+          "location": "test_models/pickle_obfuscated.pkl (pos 69)",
+          "details": {
+            "position": 69,
+            "opcode": "REDUCE",
+            "ml_context_confidence": 0.0
+          },
+          "timestamp": 1750916223.4747279,
+          "why": "The REDUCE opcode calls a callable with arguments, effectively executing arbitrary Python functions. This is the primary mechanism for pickle-based code execution attacks through __reduce__ methods."
+        },
+        {
+          "message": "Suspicious module reference found: builtins.eval",
+          "severity": "critical",
+          "location": "test_models/pickle_obfuscated.pkl (pos 29)",
+          "details": {
+            "module": "builtins",
+            "function": "eval",
+            "position": 29,
+            "opcode": "STACK_GLOBAL",
+            "ml_context_confidence": 0.0
+          },
+          "timestamp": 1750916223.4747598,
+          "why": "Direct access to builtin functions can be used to bypass restrictions or access dangerous functionality like eval/exec."
+        }
+      ]
+    },
+    "modelscan": {
+      "issues_count": 1,
+      "issues": [
+        {
+          "description": "Use of unsafe operator 'eval' from module  'builtins'",
+          "operator": "eval",
+          "module": "builtins",
+          "source": "pickle_obfuscated.pkl",
+          "scanner": "modelscan.scanners.PickleUnsafeOpScan",
+          "severity": "CRITICAL"
+        }
+      ]
+    }
+  },
+  "pickle_legitimate_ml.pkl": {
+    "modelaudit": {
+      "issues_count": 0,
+      "issues": []
+    },
+    "modelscan": {
+      "issues_count": 0,
+      "issues": []
+    }
+  },
+  "pickle_with_binary.pkl": {
+    "modelaudit": {
+      "issues_count": 0,
+      "issues": []
+    },
+    "modelscan": {
+      "supported": false
+    }
+  },
+  "config_malicious.json": {
+    "modelaudit": {
+      "issues_count": 4,
+      "issues": [
+        {
+          "message": "Suspicious configuration pattern: webhook_url (category: network_access)",
+          "severity": "warning",
+          "location": "test_models/config_malicious.json",
+          "details": {
+            "key": "webhook_url",
+            "value": "http://attacker.com/steal-data",
+            "categories": [
+              "network_access"
+            ],
+            "ml_context": {
+              "framework": null,
+              "model_type": null,
+              "confidence": 0,
+              "is_tokenizer": false,
+              "is_model_config": false
+            },
+            "analysis": "pattern_based"
+          },
+          "timestamp": 1750916228.1638348
+        },
+        {
+          "message": "Dangerous configuration content: exec_on_load",
+          "severity": "critical",
+          "location": "test_models/config_malicious.json",
+          "details": {
+            "key": "exec_on_load",
+            "analysis": "value_based",
+            "danger": "executable_content",
+            "value": "import os; os.system('whoami')"
+          },
+          "timestamp": 1750916228.163883
+        },
+        {
+          "message": "Suspicious configuration pattern: exec_on_load (category: file_access, execution)",
+          "severity": "critical",
+          "location": "test_models/config_malicious.json",
+          "details": {
+            "key": "exec_on_load",
+            "value": "import os; os.system('whoami')",
+            "categories": [
+              "file_access",
+              "execution"
+            ],
+            "ml_context": {
+              "framework": null,
+              "model_type": null,
+              "confidence": 0,
+              "is_tokenizer": false,
+              "is_model_config": false
+            },
+            "analysis": "pattern_based"
+          },
+          "timestamp": 1750916228.163904
+        },
+        {
+          "message": "Suspicious configuration pattern: api_key (category: credentials)",
+          "severity": "warning",
+          "location": "test_models/config_malicious.json",
+          "details": {
+            "key": "api_key",
+            "value": "sk-1234567890abcdef",
+            "categories": [
+              "credentials"
+            ],
+            "ml_context": {
+              "framework": null,
+              "model_type": null,
+              "confidence": 0,
+              "is_tokenizer": false,
+              "is_model_config": false
+            },
+            "analysis": "pattern_based"
+          },
+          "timestamp": 1750916228.163923
+        }
+      ]
+    },
+    "modelscan": {
+      "supported": false
+    }
+  },
+  "config_malicious.yaml": {
+    "modelaudit": {
+      "issues_count": 2,
+      "issues": [
+        {
+          "message": "Dangerous configuration content: model_config.exec_code",
+          "severity": "critical",
+          "location": "test_models/config_malicious.yaml",
+          "details": {
+            "key": "model_config.exec_code",
+            "analysis": "value_based",
+            "danger": "executable_content",
+            "value": "__import__('os').system('whoami')"
+          },
+          "timestamp": 1750916229.746235
+        },
+        {
+          "message": "Suspicious configuration pattern: model_config.exec_code (category: execution)",
+          "severity": "critical",
+          "location": "test_models/config_malicious.yaml",
+          "details": {
+            "key": "model_config.exec_code",
+            "value": "__import__('os').system('whoami')",
+            "categories": [
+              "execution"
+            ],
+            "ml_context": {
+              "framework": null,
+              "model_type": null,
+              "confidence": 0,
+              "is_tokenizer": false,
+              "is_model_config": false
+            },
+            "analysis": "pattern_based"
+          },
+          "timestamp": 1750916229.74631
+        }
+      ]
+    },
+    "modelscan": {
+      "supported": false
+    }
+  },
+  "config_blacklisted.json": {
+    "modelaudit": {
+      "issues_count": 0,
+      "issues": []
+    },
+    "modelscan": {
+      "supported": false
+    }
+  },
+  "zip_path_traversal.zip": {
+    "modelaudit": {
+      "issues_count": 1,
+      "issues": [
+        {
+          "message": "Archive entry ../../../tmp/evil.sh attempted path traversal outside the archive",
+          "severity": "critical",
+          "location": "test_models/zip_path_traversal.zip:../../../tmp/evil.sh",
+          "details": {
+            "entry": "../../../tmp/evil.sh"
+          },
+          "timestamp": 1750916232.923508,
+          "why": "Archive path traversal is especially dangerous in ML model deployments where automated systems may extract models to predictable locations, enabling attackers to overwrite critical system files or model configurations."
+        }
+      ]
+    },
+    "modelscan": {
+      "issues_count": 0,
+      "issues": []
+    }
+  },
+  "zip_with_executable.zip": {
+    "modelaudit": {
+      "issues_count": 1,
+      "issues": [
+        {
+          "message": "Unknown or unhandled format: unknown",
+          "severity": "debug",
+          "location": "test_models/zip_with_executable.zip:hidden_binary",
+          "details": {
+            "format": "unknown",
+            "path": "/var/folders/c6/j5dss2mn7b9fjjpjtcfz07qc0000gn/T/tmpoohn9nkd_hidden_binary",
+            "zip_entry": "hidden_binary"
+          },
+          "timestamp": 1750916238.018434
+        }
+      ]
+    },
+    "modelscan": {
+      "issues_count": 0,
+      "issues": []
+    }
+  },
+  "model.pmml": {
+    "modelaudit": {
+      "issues_count": 1,
+      "issues": [
+        {
+          "message": "Root element is not <PMML>",
+          "severity": "warning",
+          "location": "test_models/model.pmml",
+          "details": {},
+          "timestamp": 1750916241.261952,
+          "why": "Valid PMML files should have <PMML> as the root element."
+        }
+      ]
+    },
+    "modelscan": {
+      "supported": false
+    }
+  }
+}

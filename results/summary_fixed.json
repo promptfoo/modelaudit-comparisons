@@ -1,0 +1,71 @@
+{
+  "format_support": {
+    "modelaudit": 11,
+    "modelscan": 6
+  },
+  "issues_detected": {
+    "modelaudit": 8,
+    "modelscan": 3
+  },
+  "files_scanned": 11,
+  "format_comparison": {
+    ".pkl": {
+      "modelaudit": 5,
+      "modelscan": 4
+    },
+    ".json": {
+      "modelaudit": 2,
+      "modelscan": 0
+    },
+    ".yaml": {
+      "modelaudit": 1,
+      "modelscan": 0
+    },
+    ".zip": {
+      "modelaudit": 2,
+      "modelscan": 2
+    },
+    ".pmml": {
+      "modelaudit": 1,
+      "modelscan": 0
+    }
+  },
+  "detection_comparison": [
+    {
+      "file": "pickle_os_system.pkl",
+      "modelaudit_issues": 2,
+      "modelscan_issues": 1,
+      "modelaudit_finds_more": true
+    },
+    {
+      "file": "pickle_base64_payload.pkl",
+      "modelaudit_issues": 2,
+      "modelscan_issues": 1,
+      "modelaudit_finds_more": true
+    },
+    {
+      "file": "pickle_obfuscated.pkl",
+      "modelaudit_issues": 2,
+      "modelscan_issues": 1,
+      "modelaudit_finds_more": true
+    },
+    {
+      "file": "pickle_legitimate_ml.pkl",
+      "modelaudit_issues": 0,
+      "modelscan_issues": 0,
+      "modelaudit_finds_more": false
+    },
+    {
+      "file": "zip_path_traversal.zip",
+      "modelaudit_issues": 1,
+      "modelscan_issues": 0,
+      "modelaudit_finds_more": true
+    },
+    {
+      "file": "zip_with_executable.zip",
+      "modelaudit_issues": 1,
+      "modelscan_issues": 0,
+      "modelaudit_finds_more": true
+    }
+  ]
+}

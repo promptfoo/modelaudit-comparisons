@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.4" xmlns="http://www.dmg.org/PMML-4_4">
+  <Header>
+    <Application name="Evil Model" version="1.0"/>
+    <Annotation>Contains suspicious patterns</Annotation>
+  </Header>
+  <DataDictionary>
+    <DataField name="feature1" optype="continuous" dataType="double"/>
+  </DataDictionary>
+  <TreeModel modelName="DecisionTree" functionName="classification">
+    <Node id="1" score="malicious">
+      <True/>
+      <ScoreDistribution value="malicious" recordCount="100"/>
+      <!-- Hidden command: os.system('whoami') -->
+    </Node>
+  </TreeModel>
+</PMML>

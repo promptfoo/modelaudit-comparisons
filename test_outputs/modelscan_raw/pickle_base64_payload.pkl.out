@@ -1,0 +1,20 @@
+=== COMMAND: modelscan scan -p test_models/pickle_base64_payload.pkl -r json ===
+=== RETURN CODE: 1 ===
+=== STDOUT ===
+No settings file detected at /Users/ian/code/modelaudit/comparisons/comparisons/modelscan-settings.toml. Using defaults. 
+
+Scanning /Users/ian/code/modelaudit/comparisons/comparisons/test_models/pickle_base64_payload.pkl using modelscan.scanners.PickleUnsafeOpScan model scan
+{"summary": {"total_issues_by_severity": {"LOW": 0, "MEDIUM": 0, "HIGH": 0, 
+"CRITICAL": 1}, "total_issues": 1, "input_path": 
+"test_models/pickle_base64_payload.pkl", "absolute_path": 
+"/Users/ian/code/modelaudit/comparisons/comparisons/test_models", 
+"modelscan_version": "0.8.5", "timestamp": "2025-06-25T22:35:30.960429", 
+"scanned": {"total_scanned": 1, "scanned_files": 
+["pickle_base64_payload.pkl"]}}, "issues": [{"description": "Use of unsafe 
+operator 'exec' from module 'builtins'", "operator": "exec", "module": 
+"builtins", "source": "pickle_base64_payload.pkl", "scanner": 
+"modelscan.scanners.PickleUnsafeOpScan", "severity": "CRITICAL"}], "errors": []}
+
+=== STDERR ===
+
+=== END ===

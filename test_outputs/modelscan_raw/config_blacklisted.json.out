@@ -1,0 +1,15 @@
+=== COMMAND: modelscan scan -p test_models/config_blacklisted.json -r json ===
+=== RETURN CODE: 3 ===
+=== STDOUT ===
+No settings file detected at /Users/ian/code/modelaudit/comparisons/comparisons/modelscan-settings.toml. Using defaults. 
+
+{"summary": {"total_issues_by_severity": {"LOW": 0, "MEDIUM": 0, "HIGH": 0, 
+"CRITICAL": 0}, "total_issues": 0, "input_path": 
+"test_models/config_blacklisted.json", "absolute_path": 
+"/Users/ian/code/modelaudit/comparisons/comparisons/test_models", 
+"modelscan_version": "0.8.5", "timestamp": "2025-06-25T22:35:40.242479", 
+"scanned": {"total_scanned": 0}}, "issues": [], "errors": []}
+
+=== STDERR ===
+
+=== END ===

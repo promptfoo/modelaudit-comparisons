@@ -1,0 +1,17 @@
+=== COMMAND: modelscan scan -p test_models/zip_with_executable.zip -r json ===
+=== RETURN CODE: 0 ===
+=== STDOUT ===
+No settings file detected at /Users/ian/code/modelaudit/comparisons/comparisons/modelscan-settings.toml. Using defaults. 
+
+Scanning /Users/ian/code/modelaudit/comparisons/comparisons/test_models/zip_with_executable.zip:model.pkl using modelscan.scanners.PickleUnsafeOpScan model scan
+{"summary": {"total_issues_by_severity": {"LOW": 0, "MEDIUM": 0, "HIGH": 0, 
+"CRITICAL": 0}, "total_issues": 0, "input_path": 
+"test_models/zip_with_executable.zip", "absolute_path": 
+"/Users/ian/code/modelaudit/comparisons/comparisons/test_models", 
+"modelscan_version": "0.8.5", "timestamp": "2025-06-25T22:35:43.378197", 
+"scanned": {"total_scanned": 1, "scanned_files": 
+["zip_with_executable.zip:model.pkl"]}}, "issues": [], "errors": []}
+
+=== STDERR ===
+
+=== END ===
