@@ -15,7 +15,7 @@ jobs:
       checks: read
       statuses: read
     steps:
-      - uses: promptfoo/.github/.github/actions/ci-success@main
+      - uses: promptfoo/.github/.github/actions/ci-success@510f2c096c6ca4ffb69e1a6353adbb5586a630f0 # main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           timeout-seconds: 300
